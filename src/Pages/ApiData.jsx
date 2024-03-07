@@ -9,19 +9,14 @@ const ApiData = () => {
   // console.log("jndfjk7887y", result, word)
 
   const api = 'https://api.dictionaryapi.dev/api/v2/entries/en/'
-
   const handleClick = async () => {
     try {
       const res = await axios.get(`${api}${search}`)
-      if (res && res?.status) {
-        toast.success('true')
-        setResult(res?.data?.[0])
-        console.log("fjkguk784ryuf", res)
-      } else {
-        toast.error('No data found')
+      if (res && res?.status) { 
+        setResult(res?.data?.[0]) 
       }
-    } catch (error) {
-      console.log(error)
+    } catch {
+      toast.error("Sorry pal, we couldn't find definitions for the word you were looking for.") 
     }
   }
 
@@ -34,8 +29,7 @@ const ApiData = () => {
     }
   }
 
-  const handleKeyPress = (event) => {
-    // console.log("bjhkbuy87b",event)
+  const handleKeyPress = (event) => { 
     if (event?.key === 'Enter') {
       handleClick();
     }
@@ -95,8 +89,7 @@ const ApiData = () => {
 
         <div>
           {meanings ? <h3>meaning: {meanings?.[0]?.definitions?.[0]?.definition}</h3> : <h3>meaning</h3>}
-        </div>
-        {/* antonyms */}
+        </div> 
 
         <div>
           {meanings ? <h3>Synonyms: {meanings?.[0]?.synonyms?.map((item, ind) => {
